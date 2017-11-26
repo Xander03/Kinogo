@@ -1,0 +1,241 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: korzun
+      changes:
+        - createTable:
+            tableName: film
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: rating
+                  type: int(10)
+                  constraints:
+                    nullable: false
+
+        - createTable:
+            tableName: picture
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: src
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+
+        - createTable:
+            tableName: actor
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+
+        - createTable:
+            tableName: user
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: login
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: password
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 2
+      author: korzun
+      changes:
+        - ranameColumn:
+            newColumnName: actor_id
+            oldColumnName: id
+            tableName: actor
+
+        - ranameColumn:
+            newColumnName: film_id
+            oldColumnName: id
+            tableName: film
+
+  - changeSet:
+      id: 3
+      author: korzun
+      changes:
+        - createTable:
+            tableName: film_actor
+            columns:
+              - column:
+                  name: film_id
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: actor_id
+                  type: int
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 4
+      author: korzun
+      changes:
+        - renameColumn:
+            newColumnName: picture_id
+            oldColumnName: id
+            tableName: picture
+
+        - createTable:
+            tableName: film_picture
+            columns:
+              - column:
+                  name: film_id
+                  type: int
+                  constraints:
+                    nullabel: false
+              - column:
+                  name: picture_id
+                  type: int
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 5
+      author: korzun
+      changes:
+        - deleteColumn:
+            columnName: name
+            tableName: picture
+
+  - changeSet:
+      id: 6
+      author: korzun
+      changes:
+        - deleteColumn:
+            columnName: name
+            tableName: picture
+
+        - createTabel:
+            tableName: actor_picture
+            columns:
+              - column:
+                  name: actor_id
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: picture_id
+                  type: int
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 7
+      author: korzun
+      changes:
+        - createTabel:
+            tableName: actor_picture
+            columns:
+              - column:
+                  name: actor_id
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: picture_id
+                  type: int
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 8
+      author: korzun
+      changes:
+        - createTable:
+            tableName: actor_picture
+            columns:
+              - column:
+                  name: actor_id
+                  type: int
+                  constraints:
+                    nullabel: false
+              - column:
+                  name: picture_id
+                  type: int
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 9
+      author: korzun
+      changes:
+      - changeColumnName:
+          newColumnName: id
+          oldColumnName: picture_id
+          tableName: picture
+
+  - changeSet:
+      id: 10
+      author: korzun
+      changes:
+      - renameColumn:
+          newColumnName: id
+          oldColumnName: picture_id
+          tableName: picture
+
+  - changeSet:
+      id: 11
+      author: korzun
+      changes:
+      - createTable:
+          tableName: description
+          columns:
+            - column:
+                name: id
+                type: int
+                autoIncrement: true
+                constraints:
+                  primaryKey: true
+                  nullable: false
+            - column:
+                name: data
+                type: text
+                constraints:
+                  nullable: false;

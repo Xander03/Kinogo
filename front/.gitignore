@@ -1,0 +1,4 @@
+/node_modules/**
+/public/resources/**
+.idea/**
+README.md
