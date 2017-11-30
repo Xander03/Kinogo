@@ -1,4 +1,7 @@
 import React, {Component} from "react";
+import {FilmItemComponent} from "./listItem";
+import {CommentsComponent} from "../../commnents/index";
+import {Comment} from "../../../container/comment";
 
 class TargetFilm extends Component {
 
@@ -6,10 +9,9 @@ class TargetFilm extends Component {
         const picture = element.pictures[0];
         return(
             <div>
-                <h2>{element.name}</h2>
-                <p>{element.description.data}</p>
-                <img height={300} width={200} src={"../" + picture.src} title={picture.name}/>
-                <p>{element.rating}</p>
+                <FilmItemComponent film={element}/>
+                <CommentsComponent comments={element.comments}/>
+                <Comment />
             </div>
         )
     };

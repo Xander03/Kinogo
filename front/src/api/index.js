@@ -20,3 +20,12 @@ export function* getElement(url, id, successHandler, failHandler) {
         yield put(failHandler(e.message));
     }
 }
+
+export function* sendElement(url, data, successHandler, failHandler) {
+    try {
+        const response = yield call(axios.post, serverURL+"/"+url+"/"+data.id, {data: data.comment});
+        yield put(successHandler(response.data));
+    } catch (e) {
+        yield put(failHandler(e.message));
+    }
+}

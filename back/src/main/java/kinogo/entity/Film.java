@@ -1,5 +1,7 @@
 package kinogo.entity;
 
+import org.springframework.data.rest.core.annotation.RestResource;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +28,10 @@ public class Film {
     @OneToOne
     @JoinColumn(name = "id")
     private Description description;
+
+    @OneToMany
+    @JoinTable(name = "film_comment", joinColumns = {@JoinColumn(name = "film_id")}, inverseJoinColumns = {@JoinColumn(name = "comment_id")})
+    private List<Comment> comments = new ArrayList<>();
 
     public long getId() {
         return id;
@@ -73,6 +79,14 @@ public class Film {
 
     public void setDescription(Description description) {
         this.description = description;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 
     public Film() {

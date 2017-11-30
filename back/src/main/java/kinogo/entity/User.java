@@ -1,5 +1,7 @@
 package kinogo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +16,7 @@ public class User {
 
     private String login;
 
+    @JsonIgnore
     private String password;
 
     public long getId() {

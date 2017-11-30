@@ -2,10 +2,14 @@ import {fork, all} from "redux-saga/effects";
 
 import {watchFilmsActions} from "./modules/films/index";
 import {watchFilmActions} from "./modules/film/index";
+import {watchCommentActions} from "./modules/comment";
+import {watchUserActions} from "./modules/user"
 
 const sagas = [
     watchFilmsActions,
-    watchFilmActions
+    watchFilmActions,
+    watchCommentActions,
+    watchUserActions
 ];
 
 export default function* globalSagas () {

@@ -239,3 +239,84 @@ databaseChangeLog:
                 type: text
                 constraints:
                   nullable: false;
+
+  - changeSet:
+      id: 12
+      author: Korzun
+      changes:
+      - createTable:
+          tableName: comment
+          columns:
+            - column:
+                name: id
+                type: int
+                autoIncrement: true
+                constraints:
+                  primaryKey: true
+                  nullable: false
+            - column:
+                name: text
+                type: varchar(255)
+                constraints:
+                  nullable: false
+
+  - changeSet:
+      id: 13
+      author: Korzun
+      changes:
+      - addColumn:
+          tableName: comment
+          columns:
+            - column:
+                name: film_id
+                type: int
+                constraints:
+                  nullable: false
+            - column:
+                name: user_id
+                type: int
+                constraints:
+                  nullable: false
+
+  - changeSet:
+      id: 14
+      author: Korzun
+      changes:
+      - dropColumn:
+          columnName: user_id
+          tableName: comment
+      - dropColumn:
+          columnName: film_id
+          tableName: comment
+
+  - changeSet:
+        id: 15
+        author: Korzun
+        changes:
+        - createTable:
+            tableName: user_comment
+            columns:
+              - column:
+                  name: user_id
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: comment_id
+                  type: int
+                  constraints:
+                    nullable: false
+
+        - createTable:
+            tableName: film_comment
+            columns:
+              - column:
+                  name: film_id
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: comment_id
+                  type: int
+                  constraints:
+                    nullable: false
