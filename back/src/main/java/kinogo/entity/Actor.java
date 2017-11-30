@@ -18,7 +18,7 @@ public class Actor {
     private List<Film> films = new ArrayList<>();
 
     @OneToMany
-    @JoinColumn (name = "picture_id")
+    @JoinTable(name = "actor_picture", joinColumns = {@JoinColumn(name = "picture_id")}, inverseJoinColumns = {@JoinColumn(name = "actor_id")})
     private List<Picture> pictures = new ArrayList<>();
 
     public long getId() {
