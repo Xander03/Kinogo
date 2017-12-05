@@ -1,15 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from "react-redux";
+import {ConnectedRouter} from "react-router-redux";
 
-import {store} from "./store";
+import {store, history} from "./store";
 import {routes} from "./routes";
+
+import {Menu} from "./container";
 
 ReactDOM.render(
     <Provider store={store}>
-        <div>
-            {routes}
-        </div>
+        <ConnectedRouter history={history}>
+            <div>
+                <Menu />
+                <div>
+                    {routes}
+                </div>
+            </div>
+        </ConnectedRouter>
     </Provider>
     ,document.getElementById('root')
 );

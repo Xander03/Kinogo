@@ -6,12 +6,11 @@ import {Comment} from "../../../container/comment";
 class TargetFilm extends Component {
 
     static createTargetFilm(element) {
-        const picture = element.pictures[0];
         return(
             <div>
                 <FilmItemComponent film={element}/>
-                <CommentsComponent comments={element.comments}/>
-                <Comment />
+                {/*<CommentsComponent comments={element.comments}/>*/}
+                <Comment film={element}/>
             </div>
         )
     };

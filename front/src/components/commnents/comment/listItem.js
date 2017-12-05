@@ -2,6 +2,7 @@ import React, {Component} from "react";
 
 class CommentItem extends Component {
     render() {
+        console.log(this.props.comment);
         return(
             <div>
                 <h4>{this.props.comment.user.login}</h4>

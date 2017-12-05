@@ -1,6 +1,6 @@
 import {fromJS} from "immutable";
 import {takeEvery} from "redux-saga/effects";
-import {sendElement} from "../../api";
+import {updateElement} from "../../api";
 
 const CREATE_COMMENT_REQUEST = "CREATE_COMMENT_REQUEST";
 const CREATE_COMMENT_SUCCESS = "CREATE_COMMENT_SUCCESS";
@@ -18,11 +18,11 @@ export const reducer = (state = initialState, action) => {
 
         case CREATE_COMMENT_REQUEST:
             return state
+                .set("comment", action.payload)
                 .set("loading", true);
 
         case CREATE_COMMENT_SUCCESS:
             return state
-                .set("comment", action.payload)
                 .set("loading", false);
 
         case CREATE_COMMENT_FAILED:
@@ -38,11 +38,11 @@ export const reducer = (state = initialState, action) => {
 
 export const createCommentRequest = (data) => ({
     type: CREATE_COMMENT_REQUEST,
+    payload: data
 });
 
-export const createCommentSuccess = (data) => ({
+export const createCommentSuccess = () => ({
     type: CREATE_COMMENT_SUCCESS,
-    payload: data
 });
 
 export const createCommentFailed = (error) => ({
@@ -51,7 +51,7 @@ export const createCommentFailed = (error) => ({
 });
 
 function* createComment(action) {
-    yield sendElement("films", action.payload, createCommentSuccess, createCommentFailed);
+    yield updateElement("films", action.payload.id, action.payload.data, createCommentSuccess, createCommentFailed);
 }
 
 export function* watchCommentActions() {

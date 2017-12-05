@@ -320,3 +320,55 @@ databaseChangeLog:
                   type: int
                   constraints:
                     nullable: false
+
+  - changeSet:
+      id: 16
+      author: Korzun
+      changes:
+      - addColumn:
+          tableName: comment
+          columns:
+            - column:
+                name: film_id
+                type: int
+                constraints:
+                  nullable: false
+            - column:
+                name: user_id
+                type: int
+                constraints:
+                  nullable: false
+
+  - changeSet:
+      id: 17
+      author: Korzun
+      changes:
+      - addUniqueConstraint:
+          tableName: user
+          columnNames: login
+
+  - changeSet:
+      id: 18
+      author: Korzun
+      changes:
+      - addColumn:
+          tableName: comment
+          columns:
+          - column:
+              name: user_login
+              type: varchar(255)
+              constraints:
+                nullable: false
+
+  - changeSet:
+      id: 19
+      author: Korzun
+      changes:
+      - addColumn:
+          tableName: comment
+          columns:
+          - column:
+              name: user_id
+              type: int
+              constraints:
+                nullable: false

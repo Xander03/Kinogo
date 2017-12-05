@@ -2,25 +2,32 @@ import React, {Component} from "react";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 
-import {NewCommentComponent} from "../../components/commnents/comment/newComment";
 import {createCommentRequest, selectCommentData} from "../../modules/comment/index";
+
+let input;
+let props;
 
 class CommentContainer extends Component {
 
-    onSubmit() {
-        console.log(this);
-        createCommentRequest({
-            id: this.props.match.params.id,
+    static onSubmit(e) {
+        e.preventDefault();
+        props.actions.createCommentRequest({
+            id: props.film.id,
             data:{
-                user: this.props.user,
-                comment: this.props.children.input.value
+                user: props.user,
+                comment: input
             }
-        })
+        });
     }
 
     render() {
+        props = this.props;
         return(
-            <NewCommentComponent onSubmit={this.onSubmit}/>
+            <form onSubmit={CommentContainer.onSubmit}>
+                <p>Ваш комментарий</p>
+                <input type="text" onChange={value => input = value}/>
+                <input type="submit" value="Отправить"/>
+            </form>
         )
     }
 }

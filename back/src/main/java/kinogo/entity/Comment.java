@@ -11,11 +11,11 @@ public class Comment {
     private String text;
 
     @ManyToOne
-    @JoinTable(name = "user_comment", joinColumns = {@JoinColumn(name = "comment_id")}, inverseJoinColumns = {@JoinColumn(name = "user_id")})
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne
-    @JoinTable(name = "film_comment", joinColumns = {@JoinColumn(name = "comment_id")}, inverseJoinColumns = {@JoinColumn(name = "film_id")})
+    @JoinColumn(name = "film_id")
     private Film film;
 
     public long getId() {
