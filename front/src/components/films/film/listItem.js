@@ -9,7 +9,7 @@ class FilmItem extends Component {
             <div>
                 <h2>{film.name}</h2>
                 <p>{film.description.data}</p>
-                <img height={300} width={200} src={"../"+picture.src} title={picture.name}/>
+                <img height={300} width={200} src={"../"+picture.src} title={picture.name} alt={"   "}/>
                 <p>{film.rating}</p>
             </div>
         );

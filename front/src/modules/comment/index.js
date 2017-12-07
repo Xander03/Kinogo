@@ -1,13 +1,13 @@
 import {fromJS} from "immutable";
 import {takeEvery} from "redux-saga/effects";
-import {updateElement} from "../../api";
+import {sendElement} from "../../api";
 
 const CREATE_COMMENT_REQUEST = "CREATE_COMMENT_REQUEST";
 const CREATE_COMMENT_SUCCESS = "CREATE_COMMENT_SUCCESS";
 const CREATE_COMMENT_FAILED = "CREATE_COMMENT_FAILED";
 
 const initialState = fromJS({
-   comment: {},
+   comment: null,
    loading: false,
    error: null
 });
@@ -23,6 +23,7 @@ export const reducer = (state = initialState, action) => {
 
         case CREATE_COMMENT_SUCCESS:
             return state
+                .set("comment", action.payload)
                 .set("loading", false);
 
         case CREATE_COMMENT_FAILED:
@@ -41,8 +42,9 @@ export const createCommentRequest = (data) => ({
     payload: data
 });
 
-export const createCommentSuccess = () => ({
+export const createCommentSuccess = (data) => ({
     type: CREATE_COMMENT_SUCCESS,
+    payload: data
 });
 
 export const createCommentFailed = (error) => ({
@@ -51,12 +53,12 @@ export const createCommentFailed = (error) => ({
 });
 
 function* createComment(action) {
-    yield updateElement("films", action.payload.id, action.payload.data, createCommentSuccess, createCommentFailed);
+    yield sendElement("comments", action.payload, createCommentSuccess, createCommentFailed);
 }
 
 export function* watchCommentActions() {
     yield takeEvery(CREATE_COMMENT_REQUEST, createComment);
 }
 
-export const selectCommentContainer = (state) => state.containers.comment;
+export const selectCommentContainer = (state) => state.containers.app.user.comment;
 export const selectCommentData = (state) => selectCommentContainer(state).get("comment");

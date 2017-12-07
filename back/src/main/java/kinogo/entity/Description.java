@@ -27,4 +27,13 @@ public class Description {
         this.data = data;
     }
 
+    public Description() {
+
+    }
+
+    public Description(String data) {
+        super();
+        this.data = data;
+    }
+
 }

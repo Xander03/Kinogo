@@ -53,4 +53,11 @@ public class Comment {
     public Comment() {
 
     }
+
+    public Comment(long id, String text, User user, Film film) {
+        this.id = id;
+        this.text = text;
+        this.user = user;
+        this.film = film;
+    }
 }

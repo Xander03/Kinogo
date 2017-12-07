@@ -102,5 +102,5 @@ export function* watchUserActions() {
     yield takeEvery(SIGN_UP_REQUEST, sendUser);
 }
 
-export const selectUserContainer = (state) => state.containers.user;
+export const selectUserContainer = (state) => state.containers.app.user.info;
 export const selectUserData = (state) => selectUserContainer(state).get("user");

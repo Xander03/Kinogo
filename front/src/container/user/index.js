@@ -5,22 +5,17 @@ import {selectUserData, logInRequest, signUpRequest} from "../../modules/user/in
 import {Redirect} from "react-router-dom";
 
 let login;
-let password;
 let props;
 
 class UserContainer extends Component {
 
     onLogIn() {
-        props.actions.logInRequest({
-            login: login,
-            password: password
-        });
+        props.actions.logInRequest( "search/getUserByLogin?login=" + login);
     }
 
     onSignUp() {
         props.actions.signUpRequest({
-            login: login,
-            password: password
+            login: login
         });
     }
 
@@ -34,8 +29,7 @@ class UserContainer extends Component {
             form =
                 <div>
                     <p>Login</p>
-                    <input type="text" onChange={e => login = "search/getUserByLogin?login=" + e.target.value}/>
-                    <input type="text" onChange={e => password = "search/getUserByLogin?login=" + e.target.value}/>
+                    <input type="text" onChange={e => login = e.target.value}/>
                     <input type="button" value={"LogIn"} onClick={this.onLogIn}/>
                     <input type="button" value={"SignUp"} onClick={this.onSignUp}/>
                 </div>

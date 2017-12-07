@@ -14,7 +14,7 @@ export function* getElements(url, successHandler, failHandler) {
 
 export function* getElement(url, id, successHandler, failHandler) {
     try {
-        const response = yield call(axios.get, serverURL+"/"+url+"/"+id );
+        const response = yield call(axios.get, serverURL+"/"+url+"/"+id);
         yield put(successHandler(response.data));
     } catch (e) {
         yield put(failHandler(e.message));
@@ -23,7 +23,8 @@ export function* getElement(url, id, successHandler, failHandler) {
 
 export function* sendElement(url, data, successHandler, failHandler) {
     try {
-        const response = yield call(axios.post, serverURL+"/"+url+"/", {data: data});
+        const response = yield call(axios.post, serverURL+"/"+url, data);
+        console.log(response);
         yield put(successHandler(response.data));
     } catch (e) {
         yield put(failHandler(e.message));

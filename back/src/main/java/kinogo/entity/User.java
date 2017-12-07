@@ -1,11 +1,6 @@
 package kinogo.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class User {
@@ -15,9 +10,6 @@ public class User {
     private long id;
 
     private String login;
-
-    @JsonIgnore
-    private String password;
 
     public long getId() {
         return id;
@@ -35,19 +27,12 @@ public class User {
         this.login = login;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public User() {
 
     }
 
-    public User(String login, String password) {
-
+    public User(String login) {
+        super();
+        this.login = login;
     }
 }

@@ -9,8 +9,8 @@ class TargetFilm extends Component {
         return(
             <div>
                 <FilmItemComponent film={element}/>
-                {/*<CommentsComponent comments={element.comments}/>*/}
-                <Comment film={element}/>
+                <CommentsComponent comments={element._embedded.comments}/>
+                <Comment />
             </div>
         )
     };

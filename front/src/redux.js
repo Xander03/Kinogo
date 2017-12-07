@@ -5,6 +5,7 @@ import {reducer as filmsReducer} from "./modules/films";
 import {reducer as filmReducer} from "./modules/film";
 import {reducer as commentReducer} from "./modules/comment";
 import {reducer as userReducer} from "./modules/user"
+import {reducer as appReducer} from "./modules/app";
 
 const containersReducer = {
     containers: combineReducers({
@@ -12,8 +13,13 @@ const containersReducer = {
             list: filmsReducer,
             targetFilm: filmReducer,
         }),
-        comment: commentReducer,
-        user: userReducer
+        app: combineReducers({
+            workSpace: appReducer,
+            user: combineReducers({
+                info: userReducer,
+                comment: commentReducer,
+            })
+        })
     })
 };
 

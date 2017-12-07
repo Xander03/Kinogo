@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 
 import {FilmsComponent} from "../../components/index";
 
-import {selectFilmsData, sendFilmsRequest, getFilms} from "../../modules/films";
+import {selectFilmsData, sendFilmsRequest} from "../../modules/films";
 
 class FilmsContainer extends Component {
 

@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 
 class MenuContainer extends Component {
@@ -13,4 +14,6 @@ class MenuContainer extends Component {
     }
 }
 
-export const Menu = MenuContainer;
+export const Menu = connect(
+    (state) => ({})
+)(MenuContainer);
